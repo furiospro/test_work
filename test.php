@@ -5,6 +5,7 @@ $cli = ($_SERVER['argv'][1] ?? null) == '--console';
 $id = (is_numeric($_SERVER['argv'][1] ?? null)) ? $_SERVER['argv'][1] : null;
 
 if ($cli) {
+    // Этот блок по заданию 1 "Работа с данными PHP"
     $res = '';
     $res_arr = [];
 
@@ -54,6 +55,7 @@ if ($cli) {
 
     echo $res;
 } elseif ($id) {
+    // Этот блок по заданию 2 "Работа с SQL"
     $sql = "with tmp_res as (select ar, cr from test_work where id = :id)
 select id, epl, epc from test_work where ar = (select ar from tmp_res as t1) and cr = (select cr from tmp_res as t2) order by id desc limit 20;";
    echo print_r((new DB())->getQuery($sql, ['id' => $id]), 1);
